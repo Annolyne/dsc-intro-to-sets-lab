@@ -39,7 +39,7 @@ $ A \cap B$
 
 
 ```python
-ans1 = None
+ans1 = {8}
 ans1
 ```
 
@@ -47,7 +47,7 @@ $ A \cup C$
 
 
 ```python
-ans2 = None
+ans2 = {2,3,4,6,8,9,10,11}
 ans2
 ```
 
@@ -55,7 +55,7 @@ $A^c$
 
 
 ```python
-ans3 = None
+ans3 = {1,3,5,7,9,11,12}
 ans3
 ```
 
@@ -63,7 +63,7 @@ The absolute complement of B
 
 
 ```python
-ans4 = None
+ans4 = {1,2,4,5,6,7,9,10}
 ans4
 ```
 
@@ -71,7 +71,7 @@ $(A \cup B)^c$
 
 
 ```python
-ans5 = None
+ans5 = {1,5,7,9}
 ans5
 ```
 
@@ -79,7 +79,7 @@ $B \cap C'$
 
 
 ```python
-ans6 = None
+ans6 = {12}
 ans6
 ```
 
@@ -87,7 +87,7 @@ $A\backslash B$
 
 
 ```python
-ans7 = None
+ans7 = {2,4,6,10}
 ans7
 ```
 
@@ -95,7 +95,7 @@ $C \backslash (B \backslash A)$
 
 
 ```python
-ans8 = None
+ans8 = {2,6,8,9}
 ans8
 ```
 
@@ -103,7 +103,7 @@ $(C \cap A) \cup (C \backslash B)$
 
 
 ```python
-ans9 = None
+ans9 = {2,6,8,9}
 ans9
 ```
 
@@ -115,28 +115,28 @@ ans9
 
 ```python
 # Create set A
-A = None
+A = {2,4,6,8,10}
 f'Type A: {type(A)}, A: {A}' # "Type A: <class 'set'>, A: {2, 4, 6, 8, 10}"
 ```
 
 
 ```python
 # Create set B
-B = None
+B = {3,8,11,12}
 f'Type B: {type(B)}, A: {B}' # "Type B: <class 'set'>, B: {8, 11, 3, 12}"
 ```
 
 
 ```python
 # Create set C
-C = None
+C = {2,3,6,8,9,11}
 f'Type C: {type(C)}, A: {C}' # "Type C: <class 'set'>, C: {2, 3, 6, 8, 9, 11}"
 ```
 
 
 ```python
 # Create universal set U
-U = None
+U = set([1,2,3,4,5,6,7,8,9,10,11,12])
 f'Type U: {type(U)}, A: {U}' # "Type U: <class 'set'>, U: {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12}"
 ```
 
@@ -159,7 +159,7 @@ Every cell should display `True` if your original answer matches the answer you 
 
 
 ```python
-A_inters_B = None
+A_inters_B =  A & B
 A_inters_B == ans1
 ```
 
@@ -167,7 +167,7 @@ A_inters_B == ans1
 
 
 ```python
-A_union_C = None
+A_union_C = A | C
 A_union_C == ans2
 ```
 
@@ -175,7 +175,7 @@ A_union_C == ans2
 
 
 ```python
-A_comp = None
+A_comp = U.difference(A) # or A_comp = U-A
 A_comp == ans3
 ```
 
@@ -183,7 +183,7 @@ A_comp == ans3
 
 
 ```python
-B_comp = None
+B_comp = U.difference(B)
 B_comp == ans4
 ```
 
@@ -191,7 +191,7 @@ B_comp == ans4
 
 
 ```python
-A_union_B_comp = None
+A_union_B_comp = U - (A | B) 
 A_union_B_comp == ans5
 ```
 
@@ -199,7 +199,7 @@ A_union_B_comp == ans5
 
 
 ```python
-B_inters_C_comp = None
+B_inters_C_comp = B & (U-C)
 B_inters_C_comp == ans6
 ```
 
@@ -207,7 +207,7 @@ B_inters_C_comp == ans6
 
 
 ```python
-compl_of_B = None
+compl_of_B = A-B
 compl_of_B == ans7
 ```
 
@@ -215,7 +215,7 @@ compl_of_B == ans7
 
 
 ```python
-C_compl_B_compl_A = None
+C_compl_B_compl_A = C-(B-A)
 C_compl_B_compl_A == ans8
 ```
 
@@ -223,7 +223,7 @@ C_compl_B_compl_A == ans8
 
 
 ```python
-C_inters_A_union_C_min_B = None
+C_inters_A_union_C_min_B = (C&A)|(C-B)
 C_inters_A_union_C_min_B == ans9
 ```
 
@@ -250,19 +250,20 @@ What you'll do is translate the left hand side of the equation for the inclusion
 
 
 ```python
-left_hand_eq = None
+left_hand_eq = len(A | B | C)
 print(left_hand_eq)  # 9 elements in the set
 ```
 
 
 ```python
-right_hand_eq = None
+right_hand_eq = len(A) + len(B) + len(C) - len(A&B) - len(A&C) - len(B&C) + len(A&B&C)
 print(right_hand_eq) # 9 elements in the set
 ```
 
 
 ```python
-None # Use a comparison operator to compare `left_hand_eq` and `right_hand_eq`. Needs to say "True".
+left_hand_eq == right_hand_eq # needs to say "True"
+#None # Use a comparison operator to compare `left_hand_eq` and `right_hand_eq`. Needs to say "True".
 ```
 
 ## Set Operations in Python
@@ -294,7 +295,7 @@ Sadly, Eve's turtle passed away last week. Let's update her pet list accordingly
 
 
 ```python
-None
+Eve.remove("Turtle")
 Eve # should be {'Rabbit', 'Goldfish'}
 ```
 
@@ -302,7 +303,7 @@ This time around, Nina promised to take care of Mary's pets while she's away. Bu
 
 
 ```python
-None
+Nina.update(Mary)
 Nina # {'Chicken', 'Horse', 'Chinchilla', 'Parrot', 'Rabbit', 'Donkey', 'Dog', 'Cat', 'Goldfish'}
 ```
 
@@ -310,7 +311,7 @@ Mary, on the other hand, wants to clear her list altogether while away:
 
 
 ```python
-None
+Mary.clear()
 Mary  # set()
 ```
 
@@ -318,7 +319,7 @@ Look at how many species Nina is taking care of right now.
 
 
 ```python
-n_species_Nina = None
+n_species_Nina = len(Nina)
 n_species_Nina # 9
 ```
 
@@ -326,7 +327,7 @@ Taking care of this many pets is weighing heavily on Nina. She remembered Eve ha
 
 
 ```python
-None
+Nina.difference_update(Eve)
 Nina # 7
 ```
 
